@@ -1,8 +1,8 @@
-var margin = {top: 30, right: 20, bottom: 20, left: 20},
+var margin = {top: 30, right: 20, bottom: 20, left: 30},
     width = 1260 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 var x0 = d3.scale.ordinal()
-    .rangeRoundBands([0, width-100], .1);  //padding & outpadding both 0.1
+    .rangeRoundBands([0, width-100], .1);
 var x1 = d3.scale.ordinal();
 var y = d3.scale.linear()
 //    .domain[70,90]
@@ -15,7 +15,7 @@ var xAxis = d3.svg.axis()
 var yAxis = d3.svg.axis()
     .scale(y)
     .orient("left")
-    .tickFormat(d3.format(","));   //unit .2s //%
+    .tickFormat(d3.format(","));
 //    .tickValues[70,72,74,76,78,80,82,84,86];
 var svg = d3.select("body").append("svg")    
     .attr("width", width + margin.left + margin.right)
@@ -35,7 +35,6 @@ d3.csv("life.csv", function(error, data) {
     return key !== "State"; });
   data.forEach(function(d) {
     d.ages = ageNames.map(function(name) {return {name: name, value: +d[name]}; });
-    //console.log(d)//data=.csv;d.ages=array of lines;ageNames=array of lines(no value);d=state and value; 
   });
   x0.domain(data.map(function(d) { return d.State; }));
   x1.domain(ageNames).rangeRoundBands([0, x0.rangeBand()]);
@@ -48,7 +47,7 @@ d3.csv("life.csv", function(error, data) {
       .attr("class", "y axis")
       .call(yAxis)
     .append("text")
-      .attr("transform", "translate(0,-90)")//"rotate(-90)") 
+      .attr("transform", "translate(0,-90)")
       .attr("y", 20)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
