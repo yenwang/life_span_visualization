@@ -38,7 +38,7 @@ d3.csv("life.csv", function(error, data) {
   });
   x0.domain(data.map(function(d) { return d.State; }));
   x1.domain(ageNames).rangeRoundBands([0, x0.rangeBand()]);
-  y.domain([0, d3.max(data, function(d) { return d3.max(d.ages, function(d) { return d.value;}); })]);
+  y.domain([50,85])//([0, d3.max(data, function(d) { return d3.max(d.ages, function(d) { return d.value;}); })]);
   svg.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + height + ")")
@@ -51,7 +51,7 @@ d3.csv("life.csv", function(error, data) {
       .attr("y", 20)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
-      .text("Age");
+      .text("");
   var state = svg.selectAll(".State")      
       .data(data)
     .enter().append("g")
